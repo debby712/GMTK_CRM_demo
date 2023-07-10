@@ -273,13 +273,87 @@
       </div>
     </div>
   </div>
+  <!--repassword-->
+  <q-dialog v-model="password_verify">
+      <q-card style="width: 90vw; min-width: 400px" class="justify-center">
+        <div class="fixed">
+          <q-btn
+            color="grey-6"
+            icon="close"
+            class="no-shadow text-my-gray close-btn"
+            round
+            v-close-popup
+          />
+        </div>
+        <div  >
+ <div class="row tab-inner">
+          <div class="edit_title q-mt-lg">{{ $t("wallet.your_pw") }}</div>
+          <q-input
+            :placeholder="$t('wallet.your_pw')"
+            class="col-12 input-field-title-margin"
+            v-model="password"
+            lazy-rules
+            :type="isPwd ? 'password' : 'text'"
+          >
+            <template v-slot:append>
+              <q-icon
+                :name="isPwd ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="isPwd = !isPwd"
+              />
+            </template>
+          </q-input>
+          <!--re-->
+
+          <q-input
+            :placeholder="$t('profile.enter_again')"
+            class="col-12 input-field-title-margin"
+            v-model="re_password"
+            lazy-rules
+            :type="reisPwd ? 'password' : 'text'"
+            :rules="[]"
+          >
+            <template v-slot:append>
+              <q-icon
+                :name="reisPwd ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="reisPwd = !reisPwd"
+              />
+            </template>
+          </q-input>
+          <!--btn-->
+
+        </div>
+        </div>
+        <q-card-section class="row justify-end full-width">
+
+              <q-btn
+                :disabled="isInvalidPassword"
+                class="confrim_btn content_btn align-email-margin"
+                @click="confirm"
+                >{{ $t("auth.confirm") }}</q-btn
+              >
+
+
+        </q-card-section>
+      </q-card>
+       <div class="row fixed-bottom items-center full">
+                <q-btn
+                  color="grey-6"
+                  icon="close"
+                  class="no-shadow text-my-gray lt-sm mobile-close-btn"
+                  round
+                  v-close-popup
+                />
+              </div>
+    </q-dialog>
 </template>
 
 <script>
 import Withdraw_Waycard from "src/components/wallet/withdraw_card.vue";
 import Transfer_accountCard from "src/components/wallet/account_card.vue";
 import { accounts } from "src/components/acc_data.js";
-import { Ref } from "vue";
+import { ref } from "vue";
 export default {
   components: { Transfer_accountCard, Withdraw_Waycard },
   props: {
@@ -294,6 +368,11 @@ export default {
       selectedCard: null,
       selectedCardId: null,
       selectedCardWay: null,
+      password_verify: false,
+      password: "",
+        isPwd: ref(true),
+      reisPwd: ref(true),
+      re_password:"",
       ways: [
         {
           name: "Tron",
@@ -321,6 +400,18 @@ export default {
     };
   },
   computed: {
+      isInvalidPassword() {
+      if (!this.password || !this.re_password) {
+        return true;
+      }
+      if (
+        this.password !== this.re_password ||
+        !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/.test(this.password)
+      ) {
+        return true;
+      }
+      return false;
+    },
     remainingCards() {
       return this.cards.filter((card) => card !== this.selectedCard);
     },
@@ -332,11 +423,15 @@ export default {
     },
   },
   methods: {
+    confirm() {
+        this.$emit("withdraw_done", true);
+    },
     submitInput() {
       this.step = 3;
     },
     submitForm() {
-      this.$emit("withdraw_done", true);
+        this.password_verify= true;
+
     },
     selectCard(card) {
       if (this.selectedCard === null) {
@@ -399,6 +494,14 @@ export default {
 };
 </script>
 <style scoped>
+
+.mobile-close-btn {
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
 .disabled {
   cursor: not-allowed;
   pointer-events: none;
@@ -422,6 +525,12 @@ export default {
   .edit-card {
     width: 100%;
   }
+}.close-btn {
+  margin-right: -20px;
+  font-size: 12px;
+  color: #d9d9d9;
+  right: 0;
+  transform: translate(540px, -20px);
 }
 .selected-inner {
 }

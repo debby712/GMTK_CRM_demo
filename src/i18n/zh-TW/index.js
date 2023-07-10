@@ -194,6 +194,8 @@ export default {
     enter_new_address: "輸入新地址資料",
   },
   wallet: {
+    your_pw:"請輸入密碼",
+
     deposit_acc: "入金帳戶",
     Blockchain: "區塊鏈入金",
     Blackchain_out: "區塊鏈出金",
