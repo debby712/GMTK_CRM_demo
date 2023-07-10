@@ -3,7 +3,7 @@ export const accounts = {
     id: "standard_real",
     type: "Standard",
     leverage: "100:1",
-    balance: 0,
+    balance: 1000,
     no: "314478451",
     hold_balance: 0,
     start: "1,000",
@@ -11,7 +11,7 @@ export const accounts = {
   prime: {
     id: "prime_real",
     no: "314478452",
-    balance: 0,
+    balance: 100,
     type: "Prime",
     hold_balance: 0,
     leverage: "250:1",

@@ -194,8 +194,8 @@ export default {
     enter_new_address: "輸入新地址資料",
   },
   wallet: {
-    your_pw:"請輸入密碼",
 
+    your_pw:"請輸入密碼",
     deposit_acc: "入金帳戶",
     Blockchain: "區塊鏈入金",
     Blackchain_out: "區塊鏈出金",
@@ -238,7 +238,9 @@ export default {
     amount: "金額",
     no_trans_charge: "若該帳戶沒有進行過任何交易，出金時需支付3%的手續費。",
     trans_hints:
-      "出金申請的處理時間為星期一至五的09:00到18:00，如在此時間之外提交，則將在下一個工作天進行處理。",
+      "轉帳申請的處理時間為星期一至五的09:00到18:00，如在此時間之外提交，則將在下一個工作天進行處理。",
+     trans_apply:
+      "當轉帳申請完成後，申請金額將轉至區塊鏈的錢包上，請閣下謹慎保管帳號密碼不應外洩。本公司絕不會以任何方式詢問顧客帳號登及密碼等資訊，客戶在支付帳戶內的資金本公司不保證因疏忽導致之任何損失。",
     trans_now: "立即轉帳",
     exchange_company: "法幣買賣:",
     exchange_recommend: "GMTK 推薦法幣買賣:",

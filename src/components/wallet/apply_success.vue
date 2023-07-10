@@ -55,7 +55,10 @@
             name="eva-alert-triangle"
           />
           <div class="card-warning-text col-11">
-            {{ $t("wallet.trans_hints") }}
+            {{ $t("wallet.trans_apply") }}
+
+            <br /><br />
+               {{ $t("wallet.trans_hints") }}
 
             <br /><br />
             {{ $t("wallet.history_link") }}

@@ -260,7 +260,7 @@
       <q-input
         v-model="wallet_address"
         :placeholder="$t('auth.plz_enter')"
-      ></q-input>
+      >   <template v-slot:append><q-btn flat>  <img src="~assets/QRCODE.png"></q-btn></template></q-input>
       <div class="row justify-end">
         <q-btn
           color="positive"
@@ -287,7 +287,7 @@
         </div>
         <div  >
  <div class="row tab-inner">
-          <div class="edit_title q-mt-lg">{{ $t("wallet.your_pw") }}</div>
+          <div class="edit_title q-mt-sm">{{ $t("wallet.your_pw") }}</div>
           <q-input
             :placeholder="$t('wallet.your_pw')"
             class="col-12 input-field-title-margin"
